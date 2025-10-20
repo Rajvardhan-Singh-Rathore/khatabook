@@ -8,14 +8,14 @@ const app = express();
 // -----------------------------
 // ✅ Correct Paths for Netlify
 // -----------------------------
-// __dirname ≈ /khatabook/netlify/functions-serve/api
-// Two levels up → /khatabook
 const rootPath = path.resolve(__dirname, "../../");
 const viewsPath = path.join(rootPath, "views");
 const publicPath = path.join(rootPath, "public");
-const filesPath = path.join(rootPath, "files");
 
-// Ensure 'files' folder exists
+// Use /tmp for files to avoid read-only errors in serverless
+const filesPath = path.join("/tmp", "files");
+
+// Ensure 'files' folder exists in /tmp
 if (!fs.existsSync(filesPath)) {
   fs.mkdirSync(filesPath, { recursive: true });
   console.log("📁 Created 'files' folder at:", filesPath);
