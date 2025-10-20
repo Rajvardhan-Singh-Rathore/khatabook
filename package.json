@@ -1,0 +1,21 @@
+{
+  "name": "khatabook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Rajvardhan Singh Rathore",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "netlify-lambda": "^2.0.16",
+    "serverless-http": "^4.0.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^23.9.1"
+  }
+}

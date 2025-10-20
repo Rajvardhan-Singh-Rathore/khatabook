@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="main flex flex-col text-white gap-4 w-full h-screen bg-zinc-800 p-16">
+        <div class="container rounded-md flex justify-between bg-neutral-700 p-3">
+            <h3 >Khatabook</h3>
+            <span class="flex gap-4">
+                <a class="tracking-tight" href="/">Home</a>
+                <a class="tracking-tight" href="/create">Add new transaction</a>
+            </span>
+        </div>
+        <h3 class="mt-8 font-semibold">Here's the record of Date <%=filename.split(".").shift()%> </h3>
+        <a class="text-blue-500 -mt-4"href="/files/<%=filename%>/edit">edit</a>
+        <h3 class="mt-10 text-s"><%=data%></h3>
+    </div>
+</body>
+</html>

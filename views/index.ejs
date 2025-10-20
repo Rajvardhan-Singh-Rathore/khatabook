@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="main flex flex-col text-white gap-4 w-full h-screen bg-zinc-800 p-16">
+        <div class="container font-semibold flex justify-between bg-neutral-700 p-3 rounded-md">
+            <h3 >Khatabook</h3>
+            <span class="flex gap-4">
+                <a class="tracking-tight" href="/">Home</a>
+                <a class="tracking-tight" href="/files/create">Add new transaction</a>
+            </span>
+        </div>
+        <h3 class="tracking-tight mt-8">All Your Recent Transictions</h3>
+        <%if(files.length > 0){%>
+            <%files.forEach(file => {%>
+                <div class="card w-96 p-2 bg-blue-500 flex justify-between rounded-md">
+                    <span class="flex gap-2">
+                        <h3><%=file.split('.')[0]%></h3>
+                        <a href="/files/<%=file%>"><i class="ri-arrow-right-circle-fill"></i></a>
+                    </span>
+                    <span class="flex gap-2">
+                        <a href="/files/<%=file%>/edit"><i class="ri-pencil-fill"></i></a>
+                        <a href="/files/<%=file%>/delete"><i class="ri-delete-bin-fill"></i></a>
+                    </span>
+                </div>
+            <%});%>
+        <%}else{%>
+            <h3 class="text-center text-zinc-700">No transactions yet.</h3>
+        <%}%>
+    </div>
+</body>
+</html>
