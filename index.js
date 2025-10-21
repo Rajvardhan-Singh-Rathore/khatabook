@@ -17,6 +17,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 
+// Home page: list all records
 app.get('/', async (req, res) => {
   try {
     const records = await Record.find();
@@ -26,18 +27,35 @@ app.get('/', async (req, res) => {
   }
 });
 
+// Create record page
 app.get('/files/create', (req, res) => {
   res.render('create');
 });
 
+// Create record POST
 app.post('/files/create', async (req, res) => {
   const { date, details } = req.body;
   await Record.create({ date, details });
   res.redirect('/');
 });
 
+// Delete record
 app.get('/files/:id/delete', async (req, res) => {
   await Record.findByIdAndDelete(req.params.id);
+  res.redirect('/');
+});
+
+// Edit record page
+app.get('/files/:id/edit', async (req, res) => {
+  const record = await Record.findById(req.params.id);
+  if (!record) return res.status(404).send('Record not found');
+  res.render('edit', { record });
+});
+
+// Edit record POST
+app.post('/files/:id/edit', async (req, res) => {
+  const { date, details } = req.body;
+  await Record.findByIdAndUpdate(req.params.id, { date, details });
   res.redirect('/');
 });
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Khatabook - Home</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -16,22 +16,24 @@
                 <a class="tracking-tight" href="/files/create">Add new transaction</a>
             </span>
         </div>
+
         <h3 class="tracking-tight mt-8">All Your Recent Transactions</h3>
+
         <% if (records.length > 0) { %>
             <% records.forEach(record => { %>
-                <div class="card w-96 p-2 bg-blue-500 flex justify-between rounded-md">
-                    <span class="flex gap-2">
+                <div class="card w-96 p-3 bg-blue-500 flex justify-between rounded-md items-center">
+                    <span>
                         <h3><%= record.date %></h3>
-                        <a href="/files/<%= record._id %>"><i class="ri-arrow-right-circle-fill"></i></a>
+                        <p class="text-sm mt-1"><%= record.details %></p>
                     </span>
-                    <span class="flex gap-2">
-                        <a href="/files/<%= record._id %>/edit"><i class="ri-pencil-fill"></i></a>
-                        <a href="/files/<%= record._id %>/delete"><i class="ri-delete-bin-fill"></i></a>
+                    <span class="flex gap-3">
+                        <a href="/files/<%= record._id %>/edit" title="Edit"><i class="ri-pencil-fill"></i></a>
+                        <a href="/files/<%= record._id %>/delete" title="Delete"><i class="ri-delete-bin-fill"></i></a>
                     </span>
                 </div>
             <% }) %>
         <% } else { %>
-            <h3 class="text-center text-zinc-700">No transactions yet.</h3>
+            <h3 class="text-center text-zinc-700 mt-4">No transactions yet.</h3>
         <% } %>
     </div>
 </body>

@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"rel="stylesheet"/>
+    <title>Edit Record</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <div class="main flex flex-col text-white gap-4 w-full h-screen bg-zinc-800 p-16">
         <div class="container rounded-md flex justify-between bg-neutral-700 p-3">
-            <h3 >Khatabook</h3>
+            <h3>Khatabook</h3>
             <span class="flex gap-4">
                 <a class="tracking-tight" href="/">Home</a>
-                <a class="tracking-tight" href="/create">Add new transaction</a>
+                <a class="tracking-tight" href="/files/create">Add new transaction</a>
             </span>
         </div>
-        <h3 class="tracking-tight mt-8 font-semibold">You're editing transaction record of Date date</h3>
-        <form class="flex flex-col gap-1"action="/files/<%=filename%>/edit"method="post">
-            <textarea class = "p-2 rounded-md h-72 w-1/2 bg-transparent border resize-none text-white border-2 border-zinc-700 hover:border-gray-300 transition duration-300 ease-in-ease-out"name="prevDetails"><%=data%></textarea>
-            <input type="submit" value="Update record" class="mt-3 rounded-lg p-2 font-semibold bg-blue-500 w-36"></input>
+
+        <h3 class="tracking-tight mt-8 font-semibold">
+            You're editing transaction record of Date <%= record.date %>
+        </h3>
+
+        <form class="flex flex-col gap-1" action="/files/<%= record._id %>/edit" method="POST">
+            <input type="text" name="date" class="p-2 rounded-md w-1/2 bg-transparent border border-2 border-zinc-700 text-white" value="<%= record.date %>" required>
+            <textarea class="p-2 rounded-md h-72 w-1/2 bg-transparent border resize-none text-white border-2 border-zinc-700 hover:border-gray-300 transition duration-300 ease-in-ease-out" name="details" required><%= record.details %></textarea>
+            <input type="submit" value="Update record" class="mt-3 rounded-lg p-2 font-semibold bg-blue-500 w-36">
         </form>
     </div>
 </body>
