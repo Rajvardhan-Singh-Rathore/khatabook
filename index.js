@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-
 const app = express();
 
 mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://forfarzivada_db_user:knkszt9aujD5RAgN@khatabook.kutpwvm.mongodb.net/khatabook?retryWrites=true&w=majority&appName=Khatabook')
@@ -15,45 +14,25 @@ const recordSchema = new mongoose.Schema({
 const Record = mongoose.model('Record', recordSchema);
 
 app.set('view engine', 'ejs');
-app.use(express.json());
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', async (req, res) => {
-  const records = await Record.find().sort({ _id: -1 });
-  res.render('index', { files: records });
+  try {
+    const records = await Record.find();
+    res.render('index', { records });
+  } catch (err) {
+    res.status(500).send('Server Error');
+  }
 });
 
 app.get('/files/create', (req, res) => {
   res.render('create');
 });
 
-app.post('/create', async (req, res) => {
-  try {
-    const record = new Record({
-      date: req.body.date,
-      details: req.body.details
-    });
-    await record.save();
-    res.redirect('/');
-  } catch (err) {
-    console.error("Error while creating record:", err);
-    res.status(500).send("Internal Server Error: " + err.message);
-  }
-});
-
-app.get('/files/:id', async (req, res) => {
-  const record = await Record.findById(req.params.id);
-  res.render('read', { data: record.details, filename: record.date });
-});
-
-app.get('/files/:id/edit', async (req, res) => {
-  const record = await Record.findById(req.params.id);
-  res.render('edit', { data: record.details, filename: record._id });
-});
-
-app.post('/files/:id/edit', async (req, res) => {
-  await Record.findByIdAndUpdate(req.params.id, { details: req.body.prevDetails });
+app.post('/files/create', async (req, res) => {
+  const { date, details } = req.body;
+  await Record.create({ date, details });
   res.redirect('/');
 });
 
@@ -62,7 +41,5 @@ app.get('/files/:id/delete', async (req, res) => {
   res.redirect('/');
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on port ${PORT}`);
-});
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server running on port ${port}`));
