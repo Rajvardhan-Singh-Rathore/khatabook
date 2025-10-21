@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
-},
+  },
   "keywords": [],
   "author": "Rajvardhan Singh Rathore",
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.10",
     "express": "^5.1.0",
+    "mongoose": "^8.19.2",
     "netlify-lambda": "^2.0.16",
     "serverless-http": "^4.0.0"
   },
