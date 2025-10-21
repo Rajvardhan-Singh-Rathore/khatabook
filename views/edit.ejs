@@ -22,9 +22,11 @@
         </h3>
 
         <form class="flex flex-col gap-1" action="/files/<%= record._id %>/edit" method="POST">
-            <input type="text" name="date" class="p-2 rounded-md w-1/2 bg-transparent border border-2 border-zinc-700 text-white" value="<%= record.date %>" required>
-            <textarea class="p-2 rounded-md h-72 w-1/2 bg-transparent border resize-none text-white border-2 border-zinc-700 hover:border-gray-300 transition duration-300 ease-in-ease-out" name="details" required><%= record.details %></textarea>
-            <input type="submit" value="Update record" class="mt-3 rounded-lg p-2 font-semibold bg-blue-500 w-36">
+            <input type="date" name="date" class="p-2 rounded-md w-1/2 bg-transparent border-2 border-zinc-700 text-white" value="<%= record.date %>" required>
+            
+            <textarea name="details" class="p-2 rounded-md h-72 w-1/2 bg-transparent border-2 border-zinc-700 resize-none text-white" required><%= record.details %></textarea>
+            
+            <input type="submit" value="Update Record" class="mt-3 rounded-lg p-2 font-semibold bg-blue-500 w-36">
         </form>
     </div>
 </body>

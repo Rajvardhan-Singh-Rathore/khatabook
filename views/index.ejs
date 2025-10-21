@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <div class="main flex flex-col text-white gap-4 w-full min-h-screen bg-zinc-800 p-16">
+    <div class="main flex flex-col text-white gap-4 w-full h-screen bg-zinc-800 p-16">
         <!-- Header -->
         <div class="container font-semibold flex justify-between bg-neutral-700 p-3 rounded-md">
             <h3>Khatabook</h3>
@@ -26,14 +26,11 @@
             <% records.forEach(record => { %>
                 <div class="card w-96 p-4 bg-blue-500 flex justify-between rounded-md items-center mt-3">
                     <!-- Date + Arrow Icon -->
-                    <span class="flex flex-col">
-                        <span class="flex items-center gap-2">
-                            <h3 class="font-semibold"><%= record.date %></h3>
-                            <a href="/files/<%= record._id %>" title="View Record" class="text-white hover:text-blue-200">
-                                <i class="ri-arrow-right-circle-fill text-xl"></i>
-                            </a>
-                        </span>
-                        <p class="text-sm mt-1"><%= record.details %></p>
+                    <span class="flex items-center gap-2">
+                        <h3 class="font-semibold"><%= record.date %></h3>
+                        <a href="/files/<%= record._id %>" title="View Record" class="text-white hover:text-blue-200">
+                            <i class="ri-arrow-right-circle-fill text-xl"></i>
+                        </a>
                     </span>
 
                     <!-- Edit & Delete Icons -->
