@@ -29,9 +29,17 @@ app.get('/files/create', (req, res) => {
 });
 
 app.post('/create', async (req, res) => {
-  const record = new Record({ date: req.body.date, details: req.body.details });
-  await record.save();
-  res.redirect('/');
+  try {
+    const record = new Record({
+      date: req.body.date,
+      details: req.body.details
+    });
+    await record.save();
+    res.redirect('/');
+  } catch (err) {
+    console.error("Error while creating record:", err);
+    res.status(500).send("Internal Server Error: " + err.message);
+  }
 });
 
 app.get('/files/:id', async (req, res) => {
