@@ -17,11 +17,10 @@
             </span>
         </div>
 
-        <h3 class="mt-8 font-semibold">
-            Here's the record of Date <%= record.date %>
+        <h3 class="mt-8 font-semibold flex items-center gap-2">
+            Date: <%= record.date %>
+            <a class="text-blue-400" href="/files/<%= record._id %>/edit" title="Edit"><i class="ri-pencil-fill"></i></a>
         </h3>
-        
-        <a class="text-blue-500 mt-2 inline-block" href="/files/<%= record._id %>/edit">Edit</a>
 
         <p class="mt-6 text-white text-lg"><%= record.details %></p>
     </div>

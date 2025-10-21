@@ -27,6 +27,14 @@ app.get('/', async (req, res) => {
   }
 });
 
+// View single record
+app.get('/files/:id', async (req, res) => {
+  const record = await Record.findById(req.params.id);
+  if (!record) return res.status(404).send('Record not found');
+  res.render('read', { record });
+});
+
+
 // Create record page
 app.get('/files/create', (req, res) => {
   res.render('create');
